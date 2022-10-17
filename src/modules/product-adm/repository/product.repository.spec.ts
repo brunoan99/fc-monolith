@@ -18,7 +18,7 @@ describe('Product Repository', () => {
     await sequelize.sync()
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
     await sequelize.close()
   })
 
