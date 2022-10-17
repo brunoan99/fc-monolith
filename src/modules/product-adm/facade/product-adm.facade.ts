@@ -1,11 +1,10 @@
 import UseCaseInterface from '../../@shared/usecase/usecase.interface'
-import { AddProductUseCaseInterface } from '../usecase/add-product/add-product.usecase.interface'
 import ProductAdmFacadeInterface, { AddProductFacadeInputDTO, CheckStockFacadeInputDTO, CheckStockFacadeOutputDTO } from './product-adm.facade.interface'
 
 
 export class ProductAdmFacade implements ProductAdmFacadeInterface {
   constructor(
-    private readonly addUseCase: AddProductUseCaseInterface,
+    private readonly addUseCase: UseCaseInterface,
     private readonly checkStockUseCase: UseCaseInterface
   ) {}
 
