@@ -15,8 +15,13 @@ export class ProductRepository implements ProductGateway {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async find(id: string): Promise<Product> {
-    throw new Error('Method not implemented.')
+    const product = await ProductModel.findByPk(id)
+    return new Product({
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      salesPrice: product.salesPrice
+    })
   }
 }
