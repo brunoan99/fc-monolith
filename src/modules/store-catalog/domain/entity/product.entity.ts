@@ -4,8 +4,6 @@ import { Id } from '../../../@shared/domain/value-object/id.value-object'
 
 type ProductProps = {
   id: string
-  createdAt?: Date
-  updatedAt?: Date
   name: string
   description: string
   salesPrice: number
@@ -17,7 +15,7 @@ export class Product extends Entity implements AggregateRoot {
   private _salesPrice: number
 
   constructor(props: ProductProps) {
-    super({ id: new Id(props.id), createdAt: props.createdAt, updatedAt: props.updatedAt })
+    super({ id: new Id(props.id) })
     this._name = props.name
     this._description = props.description
     this._salesPrice = props.salesPrice
