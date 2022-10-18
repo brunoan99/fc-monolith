@@ -1,4 +1,4 @@
-export default interface ProductAdmFacadeInterface {
+export interface ProductAdmFacadeInterface {
   addProduct(input: AddProductFacadeInputDTO): Promise<void>
   checkStock(input: CheckStockFacadeInputDTO): Promise<CheckStockFacadeOutputDTO>
 }

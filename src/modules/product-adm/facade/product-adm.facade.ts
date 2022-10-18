@@ -1,5 +1,5 @@
-import UseCaseInterface from '../../@shared/usecase/usecase.interface'
-import ProductAdmFacadeInterface, { AddProductFacadeInputDTO, CheckStockFacadeInputDTO, CheckStockFacadeOutputDTO } from './product-adm.facade.interface'
+import { UseCaseInterface } from '../../@shared/usecase/usecase.interface'
+import { ProductAdmFacadeInterface, AddProductFacadeInputDTO, CheckStockFacadeInputDTO, CheckStockFacadeOutputDTO } from './product-adm.facade.interface'
 
 
 export class ProductAdmFacade implements ProductAdmFacadeInterface {
