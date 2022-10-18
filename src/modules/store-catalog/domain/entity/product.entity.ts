@@ -8,8 +8,7 @@ type ProductProps = {
   updatedAt?: Date
   name: string
   description: string
-  purchasePrice: number
-  stock: number
+  salesPrice: number
 }
 
 export class Product extends Entity implements AggregateRoot {
@@ -18,7 +17,10 @@ export class Product extends Entity implements AggregateRoot {
   private _salesPrice: number
 
   constructor(props: ProductProps) {
-    super({ id: new Id(props.id) })
+    super({ id: new Id(props.id), createdAt: props.createdAt, updatedAt: props.updatedAt })
+    this._name = props.name
+    this._description = props.description
+    this._salesPrice = props.salesPrice
   }
 
   get name(): string { return this._name }
