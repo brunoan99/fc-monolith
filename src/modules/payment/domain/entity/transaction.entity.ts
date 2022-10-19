@@ -3,7 +3,7 @@ import { Entity } from '../../../@shared/domain/entity/base.entity'
 import { Id } from '../../../@shared/domain/value-object/id.value-object'
 
 type TransactionProps = {
-  id: string,
+  id?: string,
   createdAt?: Date,
   updatedAt?: Date
   amount: number
@@ -38,10 +38,12 @@ export class Transaction extends Entity implements AggregateRoot {
 
   approve(): void {
     this._status = 'approved'
+    this.updatedAt = new Date()
   }
 
   decline(): void {
     this._status = 'declined'
+    this.updatedAt = new Date()
   }
 
   process(): void {
