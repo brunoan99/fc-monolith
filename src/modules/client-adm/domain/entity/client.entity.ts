@@ -4,6 +4,8 @@ import { Id } from '../../../@shared/domain/value-object/id.value-object'
 
 type ClientProps = {
   id?: string
+  createdAt?: Date
+  updatedAt?: Date
   name: string
   email: string
   address: string
