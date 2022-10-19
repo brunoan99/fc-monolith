@@ -1,5 +1,5 @@
-import { Client } from '../domain/entity/client.entity'
-import { ClientGateway } from '../gateway/client.gateway'
+import { Client } from '../../domain/entity/client.entity'
+import { ClientGateway } from '../../gateway/client.gateway'
 import { AddClientUseCase } from './add-client.usecase'
 
 const makeRepositoryStub = (): ClientGateway => {

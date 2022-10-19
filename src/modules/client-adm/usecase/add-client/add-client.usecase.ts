@@ -1,6 +1,6 @@
-import { UseCaseInterface } from '../../@shared/usecase/usecase.interface'
-import { Client } from '../domain/entity/client.entity'
-import { ClientGateway } from '../gateway/client.gateway'
+import { UseCaseInterface } from '../../../@shared/usecase/usecase.interface'
+import { Client } from '../../domain/entity/client.entity'
+import { ClientGateway } from '../../gateway/client.gateway'
 import { AddClientInputDTO, AddClientOutputDTO } from './add-client.usecase.dto'
 
 export class AddClientUseCase implements UseCaseInterface {
