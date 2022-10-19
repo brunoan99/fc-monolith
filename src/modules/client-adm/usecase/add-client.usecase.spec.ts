@@ -22,14 +22,13 @@ describe('AddClient UseCase', () => {
     const clientRepoSpy = jest.spyOn(clientRepo, 'add')
     const sut = new AddClientUseCase(clientRepo)
     const input = {
-      id: '1',
       name: 'Client 1',
       email: 'client1@mail.com',
       address: 'client 1 address'
     }
     const output = await sut.execute(input)
     expect(clientRepoSpy).toHaveBeenCalled()
-    expect(output.id).toBe(input.id)
+    expect(output.id).toBeDefined()
     expect(output.name).toBe(input.name)
     expect(output.email).toBe(input.email)
     expect(output.address).toBe(input.address)

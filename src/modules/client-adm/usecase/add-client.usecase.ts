@@ -9,8 +9,8 @@ export class AddClientUseCase implements UseCaseInterface {
   ) {}
 
   async execute(input: AddClientInputDTO): Promise<AddClientOutputDTO> {
-    const { id, name, email, address } = input
-    const client = new Client({ id , name, email, address})
+    const { name, email, address } = input
+    const client = new Client({ name, email, address})
     await this.clientRepo.add(client)
     return {
       id: client.id.id,
