@@ -31,12 +31,19 @@ const makeValidAddress = () => {
 }
 
 const makeValidInput = () => ({
+  name: 'any name',
   document: 'any document',
   address: makeValidAddress(),
   items: makeValidItems()
 })
 
 describe('Product Entity', () => {
+  test('Should return an error if provided name is a empty string', () => {
+    const input = makeValidInput()
+    input.name = ''
+    expect(() => {new Invoice(input)}).toThrowError('Name is required')
+  })
+
   test('Should return an error if provided document is a empty string', () => {
     const input = makeValidInput()
     input.document = ''
