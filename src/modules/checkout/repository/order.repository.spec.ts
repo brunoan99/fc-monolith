@@ -4,7 +4,7 @@ import { Order } from '../domain/entity/order.entity'
 import { Product } from '../domain/entity/product.entity'
 import { OrderModel } from './order.model'
 import { OrderRepository } from './order.repository'
-import { ProductModel } from './product.model'
+import { ProductOrderModel } from './product.model'
 
 const makeFakeOrder = () => {
   return new Order({
@@ -39,7 +39,7 @@ describe('', () => {
       sync: { force: true }
     })
 
-    sequelize.addModels([OrderModel, ProductModel])
+    sequelize.addModels([OrderModel, ProductOrderModel])
     await sequelize.sync()
   })
 
@@ -52,7 +52,7 @@ describe('', () => {
     const order = makeFakeOrder()
     await sut.addOrder(order)
     const orderOnDb = await OrderModel.findByPk(order.id.id)
-    const productsOnDb = await ProductModel.findAll({ where: { orderId: order.id.id }})
+    const productsOnDb = await ProductOrderModel.findAll({ where: { orderId: order.id.id }})
     expect(orderOnDb.clientName).toBe(order.client.name)
     expect(orderOnDb.clientEmail).toBe(order.client.email)
     expect(orderOnDb.clientAddress).toBe(order.client.address)
@@ -76,7 +76,7 @@ describe('', () => {
       clientAddress: order.client.address,
     })
     for (const products of order.products) {
-      await ProductModel.create({
+      await ProductOrderModel.create({
         id: products.id.id,
         orderId: order.id.id,
         name: products.name,

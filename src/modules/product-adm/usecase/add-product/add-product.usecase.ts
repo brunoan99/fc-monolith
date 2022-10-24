@@ -5,7 +5,7 @@ import { AddProductInputDto, AddProductOutputDto } from './add-product.dto'
 
 export class AddProductUseCase implements UseCaseInterface {
   constructor(
-    private readonly productRepo: ProductGateway
+    private readonly productRepo: ProductGateway,
   ) {}
 
   async execute(input: AddProductInputDto): Promise<AddProductOutputDto> {

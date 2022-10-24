@@ -1,10 +1,10 @@
 import { Product } from '../domain/entity/product.entity'
 import { ProductGateway } from '../gateway/product.gateway'
-import { ProductModel } from './product.model'
+import { ProductCatalogModel } from './product.model'
 
 export class ProductRepository implements ProductGateway {
   async findAll(): Promise<Product[]> {
-    const products = await ProductModel.findAll()
+    const products = await ProductCatalogModel.findAll()
     return products.map(product => {
       return new Product({
         id: product.id,
@@ -16,7 +16,7 @@ export class ProductRepository implements ProductGateway {
   }
 
   async find(id: string): Promise<Product> {
-    const product = await ProductModel.findByPk(id)
+    const product = await ProductCatalogModel.findByPk(id)
     if (!product) {
       throw new Error('Product not found')
     }

@@ -4,7 +4,7 @@ import { Product } from '../domain/entity/product.entity'
 import { Address } from '../domain/value-object/address.value-object'
 import { InvoiceModel } from './invoice.model'
 import { InvoiceRepository } from './invoice.repository'
-import { ProductModel } from './product.model'
+import { ProductInvoiceModel } from './product.model'
 
 const makeInvoiceEntity = () => {
   return new Invoice({
@@ -46,7 +46,7 @@ describe('Client Repository', () => {
       sync: { force: true }
     })
 
-    sequelize.addModels([InvoiceModel, ProductModel])
+    sequelize.addModels([InvoiceModel, ProductInvoiceModel])
     await sequelize.sync()
   })
 
@@ -70,7 +70,7 @@ describe('Client Repository', () => {
     expect(invoiceFoundOnDb.createdAt).toStrictEqual(invoice.createdAt)
     expect(invoiceFoundOnDb.updatedAt).toStrictEqual(invoice.updatedAt)
     for (const item of invoice.items) {
-      const itemFoundOnDb = await ProductModel.findByPk(item.id.id)
+      const itemFoundOnDb = await ProductInvoiceModel.findByPk(item.id.id)
       expect(itemFoundOnDb.name).toBe(item.name)
       expect(itemFoundOnDb.price).toBe(item.price)
     }
@@ -92,7 +92,7 @@ describe('Client Repository', () => {
       createdAt: new Date(),
       updatedAt: new Date()
     })
-    await ProductModel.create({
+    await ProductInvoiceModel.create({
       id: invoice.items[0].id.id,
       invoiceId: invoice.id.id,
       name: invoice.items[0].name,
@@ -100,7 +100,7 @@ describe('Client Repository', () => {
       createdAt: new Date(),
       updatedAt: new Date()
     })
-    await ProductModel.create({
+    await ProductInvoiceModel.create({
       id: invoice.items[1].id.id,
       invoiceId: invoice.id.id,
       name: invoice.items[1].name,
@@ -108,7 +108,7 @@ describe('Client Repository', () => {
       createdAt: new Date(),
       updatedAt: new Date()
     })
-    await ProductModel.create({
+    await ProductInvoiceModel.create({
       id: invoice.items[2].id.id,
       invoiceId: invoice.id.id,
       name: invoice.items[2].name,

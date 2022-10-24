@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript'
 import { InvoiceModel } from '../repository/invoice.model'
 import { InvoiceRepository } from '../repository/invoice.repository'
-import { ProductModel } from '../repository/product.model'
+import { ProductInvoiceModel } from '../repository/product.model'
 import { FindInvoiceUseCase } from '../usecase/find-invoice/find-invoice.usecase'
 import { GenerateInvoiceUseCase } from '../usecase/generate-invoice/generate-invoice.usecase'
 import { InvoiceFacade } from './invoice.facade'
@@ -17,7 +17,7 @@ describe('Invoice Facade', () => {
       sync: { force: true }
     })
 
-    sequelize.addModels([InvoiceModel, ProductModel])
+    sequelize.addModels([InvoiceModel, ProductInvoiceModel])
     await sequelize.sync()
   })
 

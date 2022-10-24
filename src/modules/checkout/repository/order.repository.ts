@@ -3,7 +3,7 @@ import { Order } from '../domain/entity/order.entity'
 import { Product } from '../domain/entity/product.entity'
 import { CheckoutGateway } from '../gateway/checkout.gateway'
 import { OrderModel } from './order.model'
-import { ProductModel } from './product.model'
+import { ProductOrderModel } from './product.model'
 
 export class OrderRepository implements CheckoutGateway {
   async addOrder(order: Order): Promise<void> {
@@ -15,7 +15,7 @@ export class OrderRepository implements CheckoutGateway {
       clientAddress: order.client.address,
     })
     for (const products of order.products) {
-      await ProductModel.create({
+      await ProductOrderModel.create({
         id: products.id.id,
         orderId: order.id.id,
         name: products.name,
@@ -30,7 +30,7 @@ export class OrderRepository implements CheckoutGateway {
     if (!orderOnDb) {
       throw new Error('Order not found')
     }
-    const productsOnDb = await ProductModel.findAll({where: { orderId: id }})
+    const productsOnDb = await ProductOrderModel.findAll({where: { orderId: id }})
     const products = productsOnDb.map((p) => {
       return new Product({
         id: p.id,

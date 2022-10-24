@@ -3,7 +3,7 @@ import { Product } from '../domain/entity/product.entity'
 import { Address } from '../domain/value-object/address.value-object'
 import { InvoiceGateway } from '../gateway/invoice.gateway'
 import { InvoiceModel } from './invoice.model'
-import { ProductModel } from './product.model'
+import { ProductInvoiceModel } from './product.model'
 
 export class InvoiceRepository implements InvoiceGateway {
   async add(invoice: Invoice): Promise<void> {
@@ -22,7 +22,7 @@ export class InvoiceRepository implements InvoiceGateway {
       updatedAt: invoice.updatedAt,
     })
     items.forEach(async (item) => {
-      await ProductModel.create({
+      await ProductInvoiceModel.create({
         id: item.id.id,
         invoiceId: invoice.id.id,
         name: item.name,
@@ -35,7 +35,7 @@ export class InvoiceRepository implements InvoiceGateway {
 
   async find(id: string): Promise<Invoice> {
     const invoiceOnDb = await InvoiceModel.findByPk(id)
-    const productsOnDb = await ProductModel.findAll({
+    const productsOnDb = await ProductInvoiceModel.findAll({
       where: {
         invoiceId: id
       }

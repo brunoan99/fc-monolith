@@ -88,7 +88,7 @@ export class PlaceOrderUseCase implements UseCaseInterface {
         }) :
         null
     payment.status === 'approved' && order.approve()
-    this.checkoutRepo.addOrder(order)
+    await this.checkoutRepo.addOrder(order)
     return {
       id: order.id.id,
       invoiceId: payment.status === 'approved' ? invoice.id : null,
