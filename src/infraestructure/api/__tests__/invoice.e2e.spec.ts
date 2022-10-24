@@ -1,7 +1,7 @@
 import { app, sequelize } from '../express'
 import request from 'supertest'
 
-describe('Checkout E2E', () => {
+describe('Invoice E2E', () => {
   beforeEach(async () => {
     await sequelize.sync({ force: true })
   })
@@ -10,7 +10,7 @@ describe('Checkout E2E', () => {
     await sequelize.close()
   })
 
-  test('should create a checkout', async () => {
+  test('should find a invoice', async () => {
     const client = await request(app)
       .post('/clients')
       .send({
@@ -43,7 +43,7 @@ describe('Checkout E2E', () => {
         stock: 10
       })
       .expect(200)
-    await request(app)
+    const checkout = await request(app)
       .post('/checkout')
       .send({
         clientId: client.body.id,
@@ -57,12 +57,27 @@ describe('Checkout E2E', () => {
         ]
       })
       .expect(200)
+    await request(app)
+      .get(`/invoice/${checkout.body.invoiceId}`)
+      .expect(200)
       .then(res => {
         expect(res.body.id).toBeDefined()
         expect(res.body.total).toBeDefined()
-        expect(res.body.status).toBeDefined()
-        expect(res.body.invoiceId).toBeDefined()
-        expect(res.body.products.length).toBe(2)
+        expect(res.body.createdAt).toBeDefined()
+        expect(res.body.updatedAt).toBeDefined()
+        expect(res.body.name).toBe(client.body.name)
+        expect(res.body.document).toBe(client.body.document)
+        expect(res.body.address.street).toBe(client.body.street)
+        expect(res.body.address.number).toBe(client.body.number)
+        expect(res.body.address.complement).toBe(client.body.complement)
+        expect(res.body.address.city).toBe(client.body.city)
+        expect(res.body.address.state).toBe(client.body.state)
+        expect(res.body.address.zipCode).toBe(client.body.zipCode)
+        expect(res.body.items.length).toBe(2)
+        expect(res.body.items[0].id).toBe(product1.body.id)
+        expect(res.body.items[0].name).toBe(product1.body.name)
+        expect(res.body.items[1].id).toBe(product2.body.id)
+        expect(res.body.items[1].name).toBe(product2.body.name)
       })
   })
 })

@@ -10,7 +10,7 @@ describe('Client E2E', () => {
     await sequelize.close()
   })
 
-  test('should create a product', async () => {
+  test('should create a client', async () => {
     await request(app)
       .post('/clients')
       .send({
