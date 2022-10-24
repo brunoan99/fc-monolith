@@ -4,9 +4,15 @@ export interface FindClientInputDTO {
 
 export interface FindClientOutputDTO {
   id: string
-  name: string
-  email: string
-  address: string
   createdAt: Date
   updatedAt: Date
+  name: string
+  email: string
+  document: string
+  street: string
+  number: string
+  complement: string
+  city: string
+  state: string
+  zipCode: string
 }

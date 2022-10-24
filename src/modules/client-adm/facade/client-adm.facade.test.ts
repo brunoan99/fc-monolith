@@ -37,13 +37,25 @@ describe('ProductAdm Facade', () => {
       id: '1',
       name: 'Client 1',
       email: 'client@mail.com',
-      address: 'Client 1 Address',
+      document: 'client 1 document',
+      street: 'client 1 street',
+      number: 'client 1 number',
+      complement: 'client 1 complement',
+      city: 'client 1 city',
+      state: 'client 1 state',
+      zipCode: 'client 1 zipCode',
     }
     await sut.addClient(input)
     const clientFoundOnDb = await ClientModel.findByPk(input.id)
     expect(clientFoundOnDb.name).toBe(input.name)
     expect(clientFoundOnDb.email).toBe(input.email)
-    expect(clientFoundOnDb.address).toBe(input.address)
+    expect(clientFoundOnDb.document).toBe(input.document)
+    expect(clientFoundOnDb.street).toBe(input.street)
+    expect(clientFoundOnDb.number).toBe(input.number)
+    expect(clientFoundOnDb.complement).toBe(input.complement)
+    expect(clientFoundOnDb.city).toBe(input.city)
+    expect(clientFoundOnDb.state).toBe(input.state)
+    expect(clientFoundOnDb.zipcode).toBe(input.zipCode)
   })
   
   test('Should find a client', async () => {
@@ -58,7 +70,13 @@ describe('ProductAdm Facade', () => {
       id: '1',
       name: 'Client 1',
       email: 'client@mail.com',
-      address: 'Client 1 Address',
+      document: 'client 1 document',
+      street: 'client 1 street',
+      number: 'client 1 number',
+      complement: 'client 1 complement',
+      city: 'client 1 city',
+      state: 'client 1 state',
+      zipCode: 'client 1 zipCode',
     }
     await sut.addClient(clientDTO)
     const input = {
@@ -67,6 +85,12 @@ describe('ProductAdm Facade', () => {
     const output = await sut.findClient(input)
     expect(output.name).toBe(clientDTO.name)
     expect(output.email).toBe(clientDTO.email)
-    expect(output.address).toBe(clientDTO.address)
+    expect(output.document).toBe(clientDTO.document)
+    expect(output.street).toBe(clientDTO.street)
+    expect(output.number).toBe(clientDTO.number)
+    expect(output.complement).toBe(clientDTO.complement)
+    expect(output.city).toBe(clientDTO.city)
+    expect(output.state).toBe(clientDTO.state)
+    expect(output.zipCode).toBe(clientDTO.zipCode)
   })
 })

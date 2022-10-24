@@ -6,11 +6,17 @@ export class ClientRepository implements ClientGateway {
   async add(client: Client): Promise<void> {
     await ClientModel.create({
       id: client.id.id,
+      createdAt: client.createdAt,
+      updatedAt: client.updatedAt,
       name: client.name,
       email: client.email,
-      address: client.address,
-      createdAt: client.createdAt,
-      updatedAt: client.updatedAt
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipcode: client.zipCode,
     })
   }
 
@@ -22,7 +28,13 @@ export class ClientRepository implements ClientGateway {
       updatedAt: client.updatedAt,
       name: client.name,
       email: client.email,
-      address: client.address,
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipcode,
     })
   }
 }

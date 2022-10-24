@@ -23,14 +23,26 @@ describe('AddClient UseCase', () => {
     const sut = new AddClientUseCase(clientRepo)
     const input = {
       name: 'Client 1',
-      email: 'client1@mail.com',
-      address: 'client 1 address'
+      email: 'client@mail.com',
+      document: 'client 1 document',
+      street: 'client 1 street',
+      number: 'client 1 number',
+      complement: 'client 1 complement',
+      city: 'client 1 city',
+      state: 'client 1 state',
+      zipCode: 'client 1 zipCode',
     }
     const output = await sut.execute(input)
     expect(clientRepoSpy).toHaveBeenCalled()
     expect(output.id).toBeDefined()
     expect(output.name).toBe(input.name)
     expect(output.email).toBe(input.email)
-    expect(output.address).toBe(input.address)
+    expect(output.document).toBe(input.document)
+    expect(output.street).toBe(input.street)
+    expect(output.number).toBe(input.number)
+    expect(output.complement).toBe(input.complement)
+    expect(output.city).toBe(input.city)
+    expect(output.state).toBe(input.state)
+    expect(output.zipCode).toBe(input.zipCode)
   })
 })

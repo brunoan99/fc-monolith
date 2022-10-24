@@ -16,7 +16,13 @@ export class FindClientUseCase implements UseCaseInterface {
       updatedAt: client.updatedAt,
       name: client.name,
       email: client.email,
-      address: client.address
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
     }
   }
 }

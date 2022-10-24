@@ -9,8 +9,8 @@ export class AddClientUseCase implements UseCaseInterface {
   ) {}
 
   async execute(input: AddClientInputDTO): Promise<AddClientOutputDTO> {
-    const { id, name, email, address } = input
-    const client = new Client({ id, name, email, address})
+    const { id, name, email, document, street, number, complement, city, state, zipCode } = input
+    const client = new Client({ id, name, email, document, street, number, complement, city, state, zipCode })
     await this.clientRepo.add(client)
     return {
       id: client.id.id,
@@ -18,7 +18,13 @@ export class AddClientUseCase implements UseCaseInterface {
       updatedAt: client.updatedAt,
       name: client.name,
       email: client.email,
-      address: client.address
+      document: client.document,
+      street: client.street,
+      number: client.number,
+      complement: client.complement,
+      city: client.city,
+      state: client.state,
+      zipCode: client.zipCode,
     }
   }
 }
