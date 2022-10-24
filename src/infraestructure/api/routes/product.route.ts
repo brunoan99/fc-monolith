@@ -4,7 +4,6 @@ import { AddProductUseCase } from '../../../modules/product-adm/usecase/add-prod
 
 export const productRoute = express.Router()
 
-
 productRoute.post('/', async (req: Request, res: Response) => {
   const usecase = new AddProductUseCase(new ProductRepository())
   try {
